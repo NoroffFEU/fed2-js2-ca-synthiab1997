@@ -1,4 +1,4 @@
-import { remove} from "../../api/auth/key";
+/*import { remove } from "../../api/auth/key";*/
 export function onLogout() {
     try {
       remove("token");

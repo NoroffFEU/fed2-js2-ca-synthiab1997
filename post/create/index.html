@@ -3,41 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>create new post</title>
-    <script type="module" src="/src/app.js"></script>
-    <link rel="stylesheet" href="/src/css/style.css">
-    <link rel="stylesheet" href="/src/css/createpost.css">
-    <script type="module" src="/src/js/api/post/create.js" defer></script>
-    <img src="/public/images/noroff-logo.png" alt="Noroff logo" class="img">
+    <title>Create Post</title>
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <link rel="stylesheet" href="/src/css/createpost.css" />
+    <script type="module" src="/src/js/views/createPost.js" defer></script>
   </head>
+
   <body>
+    <img src="/public/images/noroff-logo.png" alt="Noroff logo" class="img" />
     <h1>Create Post</h1>
 
-    <form name="createPost" action="/submit-post" method="post">
+    <form id="createPostForm">
       <div>
-          <label for="postTitle">Post Title:</label>
-          <input type="text" id="postTitle" name="postTitle" required>
+        <label for="title">Post Title:</label>
+        <input type="text" id="title" name="title" required />
       </div>
-      <br>
+
+      <br />
+
       <div>
-          <label for="postContent">Post Content:</label>
-          <textarea id="postContent" name="postContent" rows="5" required></textarea>
+        <label for="body">Post Content:</label>
+        <textarea id="body" name="body" rows="5"></textarea>
       </div>
-      <br>
+
+      <br />
+
       <div>
-        <label for="postCategorie">Post Categorie:</label>
-        <textarea id="postContent" name="postCategorie" required></textarea>
-    </div>
-      <br>
+        <label for="tags">Tags (comma-separated):</label>
+        <input type="text" id="tags" name="tags" />
+      </div>
+
+      <br />
+
       <div>
-        <label for="postMedia-url">media url:</label>
-        <textarea id="postContent" name="postMedia-url" required></textarea>
-    </div>
-    <br>
+        <label for="mediaUrl">Media URL:</label>
+        <input type="url" id="mediaUrl" name="mediaUrl" />
+      </div>
+
+      <br />
+
       <button type="submit">Create Post</button>
     </form>
-    <br>
+
+    <br />
     <a href="/">Go Back</a>
+
+    <div id="formMessage" style="margin-top: 1rem;"></div>
   </body>
 </html>
-

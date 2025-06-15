@@ -1,4 +1,4 @@
-import { API_SOCIAL_POSTS, API_SOCIAL_PROFILES } from "../constants.js";
+/*import { API_SOCIAL_POSTS, API_SOCIAL_PROFILES } from "../constants.js";
 import { headers } from "../headers.js";
 
 /**
@@ -7,7 +7,7 @@ import { headers } from "../headers.js";
  * @param {boolean} includeAuthor - Whether to include the author's information.
  * @returns {Object} - The fetched post data.
  * @throws {Error} - Throws an error if fetching the post fails.
- */
+ * /
 export async function readPost(id, includeAuthor = true) {
     // Ensure the ID is a valid number
     if (isNaN(id)) {
@@ -43,7 +43,7 @@ export async function readPost(id, includeAuthor = true) {
  * @param {string} tag - Optional tag to filter posts.
  * @returns {Object} - The fetched posts data.
  * @throws {Error} - Throws an error if fetching posts fails.
- */
+ * /
 export async function readPosts(limit = 12, page = 1, tag) {
     const endpoint = new URL(API_SOCIAL_POSTS);
     endpoint.searchParams.append("_author", "true");
@@ -81,7 +81,7 @@ export async function readPosts(limit = 12, page = 1, tag) {
  * @param {string} tag - Optional tag to filter posts.
  * @returns {Object} - The fetched posts data by the user.
  * @throws {Error} - Throws an error if fetching user posts fails.
- */
+ * /
 export async function readPostsByUser(username, limit = 12, page = 1, tag) {
     const endpoint = new URL(`${API_SOCIAL_PROFILES}/${username}/posts`);
     endpoint.searchParams.append("_author", "true");
@@ -109,4 +109,40 @@ export async function readPostsByUser(username, limit = 12, page = 1, tag) {
         console.error("Fetching posts failed:", error);
         throw error;
     }
+}
+*/
+
+// src/api/posts/read.js
+import { API_BASE_URL, API_KEY } from "../../ui/global/constants.js";
+
+
+export async function getAllPosts({ limit = 12, page = 1, tag = '', withAuthor = true } = {}) {
+  const accessToken = localStorage.getItem('accessToken');
+  const query = new URLSearchParams({
+    limit,
+    page,
+    _author: withAuthor,
+  });
+  if (tag) query.append('_tag', tag);
+
+  const url = `${API_BASE_URL}/social/posts?${query.toString()}`;
+
+  const options = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'X-Noroff-API-Key': API_KEY,
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.errors?.[0]?.message || 'Failed to load posts');
+    }
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
 }

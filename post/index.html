@@ -2,17 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
+    <title>Noroff FED2 JS2 CA - Post</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/css/createpost.css" />
+    <link rel="stylesheet" href="/src/css/style.css" />
+
+    <!-- Scripts -->
     <script type="module" src="/src/app.js"></script>
     <script type="module" src="/src/js/api/auth/logout.js"></script>
-    <link rel="stylesheet" href="/src/css/createpost.css">
-    <img src="/public/images/noroff-logo.png" alt="Noroff logo" class="img">
+    <script type="module" src="/src/js/router/views/singlePost.js"></script>
   </head>
+
   <body>
-    <h1>Post Page</h1>
-    <button id="logoutbutton">logout</button>
-    <script type="module" src=""></script>
+    <header>
+      <img src="/public/images/noroff-logo.png" alt="Noroff logo" class="img" />
+      <nav>
+        <button id="logoutbutton">Logout</button>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Single Post</h1>
+      <div id="postDetailsContainer">
+        <div id="commentSection">
+          <h3>Leave a Comment</h3>
+          <form id="commentForm">
+            <textarea name="commentBody" id="commentBody" required placeholder="Write your comment..."></textarea><br>
+            <button type="submit">Post Comment</button>
+          </form>
+          <div id="commentFeedback"></div>
+        </div>
+        
+      </div>
+    </main>
   </body>
 </html>

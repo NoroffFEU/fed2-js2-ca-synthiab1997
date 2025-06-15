@@ -1,11 +1,11 @@
-
+import { API_KEY } from "../constants.js";
 
 /**
  * Generates headers for API requests, including API key and authorization token if available.
  * @param {boolean} includeContentType - Whether to include 'Content-Type' in headers (usually for requests with a body).
  * @returns {Headers} - A Headers object with the appropriate headers set.
  */
-export function headers(includeContentType = false) {
+export function headers(includeContentType = true) { // Default to true for content type
   const headers = new Headers();
 
   // Add the API key from constants, as this should be a constant value in your project

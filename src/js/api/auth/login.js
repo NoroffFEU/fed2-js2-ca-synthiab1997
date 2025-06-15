@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "./constants.js";
+/*import { API_BASE_URL } from "./constants.js";
 
 async function loginUser(email, password) {
     const errorMessages = document.getElementById("errorMessages");
@@ -46,6 +46,32 @@ document.getElementById('loginForm')?.addEventListener('submit', (event) => {
     }
 
     loginUser(email, password);
-});
+});*/
 
+import { API_BASE_URL, API_KEY } from '../../ui/globals/constants.js';
 
+export async function loginUser(email, password) {
+  const url = `${API_BASE_URL}/auth/login`;
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Noroff-API-Key': API_KEY,
+    },
+    body: JSON.stringify({ email, password }),
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.errors?.[0]?.message || 'Login failed');
+    }
+    const { data } = await response.json();
+    localStorage.setItem('accessToken', data.accessToken);
+    localStorage.setItem('profile', JSON.stringify(data));
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}

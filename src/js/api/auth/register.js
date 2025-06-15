@@ -1,5 +1,4 @@
-// Import the necessary API endpoint from constants.js
-import { API_AUTH_REGISTER } from "./constants.js";
+/*import { API_AUTH_REGISTER } from "./constants.js";
 
 /**
  * Function to register a new user.
@@ -8,7 +7,7 @@ import { API_AUTH_REGISTER } from "./constants.js";
  * @param {string} password - The user's password.
  * @returns {Object} - The response data from the API if successful.
  * @throws {Error} - An error with a message if registration fails.
- */
+ * /
 export const registerUser = async (name, email, password) => {
     const response = await fetch(API_AUTH_REGISTER, {
         method: 'POST',
@@ -68,5 +67,32 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("errorMessages").innerText = "Error: " + error.message;
         }
     });
-});
+}); */
 
+import { API_BASE_URL, API_KEY } from '../../ui/globals/constants.js';
+
+export async function registerUser(name, email, password) {
+  const url = `${API_BASE_URL}/auth/register`;
+  const body = JSON.stringify({ name, email, password });
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Noroff-API-Key': API_KEY,
+    },
+    body,
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.errors?.[0]?.message || 'Registration failed');
+    }
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}

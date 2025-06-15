@@ -4,12 +4,11 @@ import router from "./js/router";
 
 await router(window.location.pathname);
 
-// src/index.js
+import { createPost } from './js/api/post/create.js';
+import { readPosts } from './js/api/post/read.js';
+import { updatePost } from './js/api/post/update.js';
+import { deletePost } from './js/api/post/delete.js';
 
-import { createPost } from './api/post/create.js';
-import { readPosts } from './api/post/read.js';
-import { updatePost } from './api/post/update.js';
-import { deletePost } from './api/post/delete.js';
 
 async function initializeApp() {
     const token = localStorage.getItem('jwtToken'); // Get the JWT token from local storage

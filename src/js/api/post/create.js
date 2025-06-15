@@ -1,4 +1,4 @@
-import { API_SOCIAL_POSTS } from "../constants.js";
+/*import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 
 /**
@@ -6,7 +6,7 @@ import { headers } from "../headers.js";
  * @param {Object} postDetails - Contains title, content, category, and media URL.
  * @returns {Object} - The created post data.
  * @throws {Error} - Throws an error if the post creation fails.
- */
+ * /
 export async function createPost({ title, content, category, mediaUrl }) {
     // Construct post data according to your form's structure
     const postData = {
@@ -74,4 +74,34 @@ document.forms["createPost"]?.addEventListener("submit", async (event) => {
         console.error("Failed to create post:", error);
         alert("Failed to create post: " + error.message);
     }
-});
+}); */
+
+import { API_BASE_URL, API_KEY } from "../../ui/global/constants.js";
+
+
+export async function createPost(postData) {
+  const accessToken = localStorage.getItem('accessToken');
+  const url = `${API_BASE_URL}/social/posts`;
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+      'X-Noroff-API-Key': API_KEY,
+    },
+    body: JSON.stringify(postData),
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.errors?.[0]?.message || 'Post creation failed');
+    }
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
