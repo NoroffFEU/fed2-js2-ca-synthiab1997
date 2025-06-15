@@ -1,7 +1,10 @@
 import { API_SOCIAL_POSTS, API_KEY } from "../../../ui/globals/constants.js";
 import { authGuard } from "../../../utilities/authGuard.js";
+import { renderNavbar } from "../ui/global/navbar.js";
+
 
 authGuard();
+renderNavbar();
 
 const form = document.getElementById("createPostForm");
 const message = document.getElementById("formMessage");

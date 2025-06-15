@@ -1,8 +1,11 @@
 import { API_KEY } from "../../api/constants";
 import { onDeletePost } from "../../ui/post/delete";
 import { authGuard } from "../../utilities/authGuard";
+import { renderNavbar } from "../ui/global/navbar.js";
 
 authGuard();
+renderNavbar();
+
 
 async function myProfile() {
   const token = window.localStorage.getItem("token");

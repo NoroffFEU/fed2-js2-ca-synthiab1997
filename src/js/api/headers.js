@@ -1,4 +1,4 @@
-import { API_KEY } from "../constants.js";
+import { API_KEY } from "../ui/global/constants";
 
 /**
  * Generates headers for API requests, including API key and authorization token if available.
