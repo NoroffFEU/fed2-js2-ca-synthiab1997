@@ -1,4 +1,4 @@
-import { API_KEY } from "../../api/constants";
+import { API_KEY } from "../../ui/global/constants.js";
 import { onDeletePost } from "../../ui/post/delete";
 import { authGuard } from "../../utilities/authGuard";
 import { renderNavbar } from "../ui/global/navbar.js";
