@@ -1,4 +1,4 @@
-import { API_BASE_URL, API_KEY } from "../../ui/globals/constants.js";
+import { API_BASE_URL, API_KEY } from "../../ui/global/constants.js";
 
 export async function commentOnPost(postId, commentBody) {
   const accessToken = localStorage.getItem("accessToken");

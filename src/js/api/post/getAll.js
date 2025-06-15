@@ -1,4 +1,4 @@
-// src/js/api/posts/getAll.js
+
 import { API_BASE_URL, API_KEY } from "../global/constants.js";
 
 export async function getAllPosts(page = 1, tag = "") {

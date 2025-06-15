@@ -1,4 +1,4 @@
-import { API_SOCIAL_POSTS, API_KEY } from "../../ui/globals/constants.js";
+import { API_SOCIAL_POSTS, API_KEY } from "../../ui/global/constants.js";
 
 const accessToken = localStorage.getItem("accessToken");
 const postId = new URLSearchParams(window.location.search).get("id");
